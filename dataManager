@@ -1,0 +1,24 @@
+const dataStore = {};
+
+function addData(data) {
+    if (!data.id || dataStore[data.id]){
+        throw new Error("Invalid data");
+    }
+    dataStore[data.id] = data;
+}
+
+function deleteData(id) {
+    if (!dataStore[id]) {
+        throw new Error("Data not found")
+    }
+    delete dataStore[id];
+}
+
+function editData(id, newData) {
+    if (!dataStore[id]) {
+        throw new Error("Data not found"); 
+    }
+    dataStore[id] = { ...dataStore[id], ...newData };
+}
+
+module.exports = { addData, deleteData, editData, dataStore};
